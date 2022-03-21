@@ -31,7 +31,7 @@ public class NewStudentActivity extends AppCompatActivity {
 
         data = getIntent();
         Log.i("teste", "onCreate: " + data.getExtras());
-        if (data.getExtras() != null) {
+        if (data.hasExtra("student")) {
             studentedit = (Student) data.getSerializableExtra("student");
             nameField.setText(studentedit.getName());
             phoneField.setText(studentedit.getPhone());
@@ -46,7 +46,7 @@ public class NewStudentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.i("teste", "onClick: " + data.getData());
-                if (data.getExtras() != null) {
+                if (data.hasExtra("student")) {
                     editStudent();
                     dao.edit(studentedit);
                     finish();

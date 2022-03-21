@@ -31,7 +31,13 @@ public class StudentDAO {
         }
     }
 
+
+
     public ArrayList<Student> getall() {
         return new ArrayList<>(students);
+    }
+
+    public void remove(Student clickedStudent) {
+        students.remove(clickedStudent);
     }
 }
