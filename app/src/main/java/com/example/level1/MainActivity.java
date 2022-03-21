@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setTitle("lista de alunos");
 
         configureNewStudentButton();
+        configureList();
 
         dao.save(new Student("pedro", "3323232", "teste@gmail.com"));
         dao.save(new Student("joao", "332553232", "teste2@gmail.com"));
@@ -52,19 +53,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
 
         super.onResume();
-        configureList();
+        adapter.clear();
+        adapter.addAll(dao.getall());
+
     }
 
     private void configureList() {
         ListView listaAlunos = findViewById(R.id.activity_main_lista_alunos);
-        ArrayList<Student> students = dao.getall();
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, students);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         listaAlunos.setAdapter(adapter);
-        configureOnClick(listaAlunos, students);
-        configureOnLongClick(listaAlunos, students);
+        configureOnClick(listaAlunos);
+        configureOnLongClick(listaAlunos);
     }
 
-    private void configureOnLongClick(ListView listaAlunos, ArrayList<Student> students) {
+    private void configureOnLongClick(ListView listaAlunos) {
         listaAlunos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long id) {
@@ -77,13 +79,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void configureOnClick(ListView listaAlunos, ArrayList<Student> students) {
+    private void configureOnClick(ListView listaAlunos) {
         listaAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
-                Student clickedStudent = students.get(pos);
+                Student selectedItem = (Student) adapterView.getItemAtPosition(pos);
                 Intent goToNewStudentActivity = new Intent(MainActivity.this, NewStudentActivity.class);
-                goToNewStudentActivity.putExtra("student", clickedStudent);
+                goToNewStudentActivity.putExtra("student", selectedItem);
                 startActivity(goToNewStudentActivity);
 
             }
