@@ -1,34 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_width="match_parent">
 
-
-    <EditText android:id="@+id/activity_new_student_name"
-        android:layout_width="match_parent"
-        android:layout_margin="8dp"
-        android:hint="nome"
-        android:inputType="textCapWords"
-        android:layout_height="wrap_content" />
-    <EditText android:id="@+id/activity_new_student_phone"
-        android:layout_width="match_parent"
-        android:layout_margin="8dp"
-        android:hint="telefone"
-        android:inputType="phone"
-        android:layout_height="wrap_content" />
-    <EditText android:id="@+id/activity_new_student_mail"
-        android:layout_width="match_parent"
-        android:layout_margin="8dp"
-        android:hint="email"
-        android:inputType="textEmailAddress"
-        android:layout_height="wrap_content" />
-    <Button android:id="@+id/activity_new_student_save"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:text="Salvar"/>
-
+        android:orientation="vertical">
 
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/activity_new_student_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="nome"
+            android:inputType="textCapWords" />
+
+        <EditText
+            android:id="@+id/activity_new_student_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="telefone"
+            android:inputType="phone" />
+
+        <EditText
+            android:id="@+id/activity_new_student_mail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="email"
+            android:inputType="textEmailAddress" />
+
+
+    </LinearLayout>
+</ScrollView>

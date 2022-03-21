@@ -3,10 +3,14 @@ package com.example.level1;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.level1.dao.StudentDAO;
@@ -19,15 +23,15 @@ public class NewStudentActivity extends AppCompatActivity {
     private EditText emailField;
     private Student studentedit;
     private Intent data;
+    private StudentDAO dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final StudentDAO dao = new StudentDAO();
+        dao = new StudentDAO();
         setTitle("Adicione novo aluno");
         setContentView(R.layout.activity_new_student);
         getFields();
-        configureSaveButton(dao);
 
         data = getIntent();
         Log.i("teste", "onCreate: " + data.getExtras());
@@ -40,24 +44,33 @@ public class NewStudentActivity extends AppCompatActivity {
 
     }
 
-    private void configureSaveButton(StudentDAO dao) {
-        Button saveButton = findViewById(R.id.activity_new_student_save);
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i("teste", "onClick: " + data.getData());
-                if (data.hasExtra("student")) {
-                    editStudent();
-                    dao.edit(studentedit);
-                    finish();
-                }
-                else{
-                    Student student = new Student(nameField.getText().toString(), phoneField.getText().toString(), emailField.getText().toString());
-                    dao.save(student);
-                    finish();
-                }
-            }
-        });
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_new_student_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == R.id.activity_new_student_menu) {
+            saveOrEdit();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void saveOrEdit() {
+        if (data.hasExtra("student")) {
+            editStudent();
+            dao.edit(studentedit);
+            finish();
+        }
+        else{
+            Student student = new Student(nameField.getText().toString(), phoneField.getText().toString(), emailField.getText().toString());
+            dao.save(student);
+            finish();
+        }
     }
 
     private void editStudent() {
