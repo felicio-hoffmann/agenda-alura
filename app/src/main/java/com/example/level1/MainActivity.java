@@ -46,10 +46,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
-        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        Student selectedItem = adapter.getItem(menuInfo.position);
-        dao.remove(selectedItem);
-        adapter.remove(selectedItem);
+        int itemId = item.getItemId();
+        if (itemId == R.id.activity_main_remove) {
+            AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+            Student selectedItem = adapter.getItem(menuInfo.position);
+            dao.remove(selectedItem);
+            adapter.remove(selectedItem);
+        }
         return super.onContextItemSelected(item);
     }
 
