@@ -2,11 +2,14 @@ package com.example.level1;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,6 +36,21 @@ public class MainActivity extends AppCompatActivity {
         dao.save(new Student("pedro", "3323232", "teste@gmail.com"));
         dao.save(new Student("joao", "332553232", "teste2@gmail.com"));
 
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.add("Remove");
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        Student selectedItem = adapter.getItem(menuInfo.position);
+        dao.remove(selectedItem);
+        adapter.remove(selectedItem);
+        return super.onContextItemSelected(item);
     }
 
     private void configureNewStudentButton() {
@@ -62,22 +80,11 @@ public class MainActivity extends AppCompatActivity {
         ListView listaAlunos = findViewById(R.id.activity_main_lista_alunos);
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         listaAlunos.setAdapter(adapter);
+        registerForContextMenu(listaAlunos);
         configureOnClick(listaAlunos);
-        configureOnLongClick(listaAlunos);
+
     }
 
-    private void configureOnLongClick(ListView listaAlunos) {
-        listaAlunos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long id) {
-                Student selectedItem = (Student) adapterView.getItemAtPosition(pos);
-                dao.remove(selectedItem);
-                adapter.remove(selectedItem);
-
-                return true;
-            }
-        });
-    }
 
     private void configureOnClick(ListView listaAlunos) {
         listaAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
