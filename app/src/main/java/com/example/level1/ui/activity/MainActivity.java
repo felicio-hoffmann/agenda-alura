@@ -6,7 +6,6 @@ import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -32,10 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
         configureNewStudentButton();
         configureList();
-
-        dao.save(new Student("pedro", "3323232", "teste@gmail.com"));
-        dao.save(new Student("joao", "332553232", "teste2@gmail.com"));
-
     }
 
     @Override
@@ -75,8 +70,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
 
         super.onResume();
-        adapter.clear();
-        adapter.addAll(dao.getall());
+        adapter.refresh(dao.getall());
 
     }
 
