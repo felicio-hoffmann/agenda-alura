@@ -1,4 +1,4 @@
-package com.example.level1;
+package com.example.level1.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,22 +6,22 @@ import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.level1.R;
 import com.example.level1.dao.StudentDAO;
 import com.example.level1.model.Student;
+import com.example.level1.ui.adapter.StudentAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     StudentDAO dao = new StudentDAO();
-    private ArrayAdapter<Student> adapter;
+    private StudentAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
             Student selectedItem = adapter.getItem(menuInfo.position);
             dao.remove(selectedItem);
             adapter.remove(selectedItem);
+
         }
         return super.onContextItemSelected(item);
     }
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void configureList() {
         ListView listaAlunos = findViewById(R.id.activity_main_lista_alunos);
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+        adapter = new StudentAdapter(this);
         listaAlunos.setAdapter(adapter);
         registerForContextMenu(listaAlunos);
         configureOnClick(listaAlunos);

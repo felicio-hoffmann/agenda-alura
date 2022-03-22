@@ -1,4 +1,4 @@
-package com.example.level1;
+package com.example.level1.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.level1.R;
 import com.example.level1.dao.StudentDAO;
 import com.example.level1.model.Student;
 
