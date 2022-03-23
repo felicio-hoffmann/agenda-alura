@@ -15,7 +15,7 @@ import java.util.List;
 
 public class StudentAdapter extends BaseAdapter {
     private final List<Student> students = new ArrayList<>();
-    private Context context;
+    private final Context context;
 
     public StudentAdapter(Context context) {
         this.context = context;

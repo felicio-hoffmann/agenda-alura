@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -15,12 +14,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.level1.R;
 import com.example.level1.dao.StudentDAO;
 import com.example.level1.model.Student;
-import com.example.level1.ui.adapter.StudentAdapter;
+import com.example.level1.ui.MainView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
-    StudentDAO dao = new StudentDAO();
-    private StudentAdapter adapter;
+
+    MainView mainView = new MainView(this);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         setTitle("lista de alunos");
-
         configureNewStudentButton();
         configureList();
     }
@@ -43,23 +41,14 @@ public class MainActivity extends AppCompatActivity {
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == R.id.activity_main_remove) {
-            AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-            Student selectedItem = adapter.getItem(menuInfo.position);
-            dao.remove(selectedItem);
-            adapter.remove(selectedItem);
-
+            mainView.confirmationRemove(item);
         }
         return super.onContextItemSelected(item);
     }
 
     private void configureNewStudentButton() {
         FloatingActionButton fab = findViewById(R.id.activity_main_fab_add);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goToNewStudent();
-            }
-        });
+        fab.setOnClickListener(view -> goToNewStudent());
     }
 
     private void goToNewStudent() {
@@ -70,30 +59,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
 
         super.onResume();
-        adapter.refresh(dao.getall());
+        mainView.refresh();
 
     }
 
     private void configureList() {
         ListView listaAlunos = findViewById(R.id.activity_main_lista_alunos);
-        adapter = new StudentAdapter(this);
-        listaAlunos.setAdapter(adapter);
+        mainView.configureAdapter(listaAlunos);
         registerForContextMenu(listaAlunos);
         configureOnClick(listaAlunos);
 
     }
 
-
     private void configureOnClick(ListView listaAlunos) {
-        listaAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
-                Student selectedItem = (Student) adapterView.getItemAtPosition(pos);
-                Intent goToNewStudentActivity = new Intent(MainActivity.this, NewStudentActivity.class);
-                goToNewStudentActivity.putExtra("student", selectedItem);
-                startActivity(goToNewStudentActivity);
+        listaAlunos.setOnItemClickListener((adapterView, view, pos, id) -> {
+            Student selectedItem = (Student) adapterView.getItemAtPosition(pos);
+            Intent goToNewStudentActivity = new Intent(MainActivity.this, NewStudentActivity.class);
+            goToNewStudentActivity.putExtra("student", selectedItem);
+            startActivity(goToNewStudentActivity);
 
-            }
         });
     }
 }

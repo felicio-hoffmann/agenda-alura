@@ -15,23 +15,15 @@ public class StudentDAO {
     }
 
     public void edit(Student student){
-        Student studentFound = null;
-
         for (Student s:
              students) {
-            if (s.getId() == student.getId()) {
-
-                studentFound = s;
-            }
-            if (studentFound != null){
-                int pos = students.indexOf(studentFound);
+            if (s.getId() == student.getId()){
+                int pos = students.indexOf(s);
                 students.set(pos, student);
-
+                break;
             }
         }
     }
-
-
 
     public ArrayList<Student> getall() {
         return new ArrayList<>(students);
