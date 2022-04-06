@@ -12,14 +12,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.level1.R;
-import com.example.level1.dao.StudentDAO;
 import com.example.level1.model.Student;
 import com.example.level1.ui.MainView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
-    MainView mainView = new MainView(this);
+    private MainView mainView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         setTitle("lista de alunos");
+        this.mainView = new MainView(this);
         configureNewStudentButton();
         configureList();
     }

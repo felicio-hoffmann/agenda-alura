@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.level1.R;
 import com.example.level1.dao.StudentDAO;
+import com.example.level1.database.AgendaDatabase;
+import com.example.level1.database.RoomStudentDAO;
 import com.example.level1.model.Student;
 
 public class NewStudentActivity extends AppCompatActivity {
@@ -21,12 +23,12 @@ public class NewStudentActivity extends AppCompatActivity {
     private EditText emailField;
     private Student studentedit;
     private Intent data;
-    private StudentDAO dao;
+    private RoomStudentDAO dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        dao = new StudentDAO();
+        dao = AgendaDatabase.getInstance(this).getRoomDAO();
         setTitle("Adicione novo aluno");
         setContentView(R.layout.activity_new_student);
         getFields();
@@ -63,8 +65,7 @@ public class NewStudentActivity extends AppCompatActivity {
             editStudent();
             dao.edit(studentedit);
             finish();
-        }
-        else{
+        } else {
             Student student = new Student(nameField.getText().toString(), phoneField.getText().toString(), emailField.getText().toString());
             dao.save(student);
             finish();

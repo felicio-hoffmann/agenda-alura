@@ -62,7 +62,7 @@ public class StudentAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    public void refresh(ArrayList<Student> getall){
+    public void refresh(List<Student> getall){
         students.clear();
         students.addAll(getall);
     }

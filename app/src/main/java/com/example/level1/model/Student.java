@@ -1,9 +1,14 @@
 package com.example.level1.model;
 
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 
+@Entity
 public class Student implements Serializable {
+    @PrimaryKey(autoGenerate = true)
     private int id = 0;
     private  String name;
     private  String phone;

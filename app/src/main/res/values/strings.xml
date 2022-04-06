@@ -1,5 +1,5 @@
-<resources>
-    <string name="app_name">level1</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" tools:ignore="Typos">level1</string>
     <string name="remove">Remover</string>
     <string name="nome">Nome</string>
     <string name="phone">Telefone</string>

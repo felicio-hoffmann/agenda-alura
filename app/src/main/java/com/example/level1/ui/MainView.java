@@ -3,13 +3,15 @@ package com.example.level1.ui;
 import android.content.Context;
 import android.view.MenuItem;
 import android.widget.AdapterView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.room.Room;
 
 import com.example.level1.dao.StudentDAO;
+import com.example.level1.database.AgendaDatabase;
+import com.example.level1.database.RoomStudentDAO;
 import com.example.level1.model.Student;
 import com.example.level1.ui.adapter.StudentAdapter;
 
@@ -17,12 +19,12 @@ public class MainView {
 
     private final Context context;
     private final StudentAdapter adapter;
-    private final StudentDAO dao;
+    private final RoomStudentDAO dao;
 
     public MainView(Context context) {
         this.context = context;
         this.adapter = new StudentAdapter(context);
-        this.dao = new StudentDAO();
+        this.dao = AgendaDatabase.getInstance(context).getRoomDAO();
     }
 
     public void configureAdapter(ListView listaAlunos) {
