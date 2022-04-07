@@ -11,7 +11,7 @@ import com.example.level1.model.Student;
 import java.util.List;
 
 @Dao
-public interface RoomStudentDAO {
+public interface StudentDAO {
     @Insert
     void save(Student student);
 

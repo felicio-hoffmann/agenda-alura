@@ -46,7 +46,7 @@ public class StudentAdapter extends BaseAdapter {
 
     private void setFields(View createdView, Student selectedStudent) {
         TextView name = createdView.findViewById(R.id.student_item_name);
-        name.setText(selectedStudent.getName());
+        name.setText(selectedStudent.getFullName());
         TextView phone = createdView.findViewById(R.id.student_item_phone);
         phone.setText(selectedStudent.getPhone());
     }

@@ -7,11 +7,9 @@ import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.room.Room;
 
-import com.example.level1.dao.StudentDAO;
 import com.example.level1.database.AgendaDatabase;
-import com.example.level1.database.RoomStudentDAO;
+import com.example.level1.database.StudentDAO;
 import com.example.level1.model.Student;
 import com.example.level1.ui.adapter.StudentAdapter;
 
@@ -19,7 +17,7 @@ public class MainView {
 
     private final Context context;
     private final StudentAdapter adapter;
-    private final RoomStudentDAO dao;
+    private final StudentDAO dao;
 
     public MainView(Context context) {
         this.context = context;

@@ -6,4 +6,5 @@
     <string name="email">E-mail</string>
     <string name="save">Salvar</string>
     <string name="new_student">Novo Aluno</string>
+    <string name="surname">Sobrenome</string>
 </resources>
