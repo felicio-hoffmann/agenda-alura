@@ -16,6 +16,8 @@ public abstract class AgendaDatabase extends RoomDatabase {
 
     public static final String DB_NAME = "agenda.db";
     private static AgendaDatabase instance;
+    //teste msg de commit
+
 
     public abstract StudentDAO getRoomDAO();
 
