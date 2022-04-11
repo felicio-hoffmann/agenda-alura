@@ -14,6 +14,7 @@ public class Student implements Serializable {
     private String surname;
     private  String phone;
     private  String email;
+    private String mobilePhone;
 
     public Student(String name, String phone, String email) {
         this.name = name;
@@ -68,5 +69,13 @@ public class Student implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
+    }
+
+    public String getMobilePhone() {
+        return mobilePhone;
     }
 }

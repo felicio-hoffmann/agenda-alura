@@ -20,6 +20,7 @@ public class NewStudentActivity extends AppCompatActivity {
     private EditText nameField;
     private EditText surnameField;
     private EditText phoneField;
+    private EditText mobilePhoneField;
     private EditText emailField;
     private Student studentedit;
     private Intent data;
@@ -40,6 +41,7 @@ public class NewStudentActivity extends AppCompatActivity {
             nameField.setText(studentedit.getName());
             surnameField.setText(studentedit.getSurname());
             phoneField.setText(studentedit.getPhone());
+            mobilePhoneField.setText(studentedit.getMobilePhone());
             emailField.setText(studentedit.getEmail());
         }
 
@@ -78,10 +80,12 @@ public class NewStudentActivity extends AppCompatActivity {
         String name = nameField.getText().toString();
         String surname = surnameField.getText().toString();
         String phone = phoneField.getText().toString();
+        String mobilePhone = mobilePhoneField.getText().toString();
         String email = emailField.getText().toString();
         studentedit.setEmail(email);
         studentedit.setSurname(surname);
         studentedit.setPhone(phone);
+        studentedit.setMobilePhone(mobilePhone);
         studentedit.setName(name);
     }
 
@@ -89,6 +93,7 @@ public class NewStudentActivity extends AppCompatActivity {
         nameField = findViewById(R.id.activity_new_student_name);
         surnameField = findViewById(R.id.activity_new_student_surname);
         phoneField = findViewById(R.id.activity_new_student_phone);
+        mobilePhoneField = findViewById(R.id.activity_new_student_mobile_phone);
         emailField = findViewById(R.id.activity_new_student_mail);
     }
 }

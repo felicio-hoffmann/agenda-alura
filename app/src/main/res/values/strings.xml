@@ -7,4 +7,5 @@
     <string name="save">Salvar</string>
     <string name="new_student">Novo Aluno</string>
     <string name="surname">Sobrenome</string>
+    <string name="mobile_phone">Telefone Celular</string>
 </resources>
