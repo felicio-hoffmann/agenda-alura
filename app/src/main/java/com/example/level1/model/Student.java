@@ -12,13 +12,11 @@ public class Student implements Serializable {
     private int id = 0;
     private  String name;
     private String surname;
-    private  String phone;
     private  String email;
-    private String mobilePhone;
 
     public Student(String name, String phone, String email) {
         this.name = name;
-        this.phone = phone;
+//        this.phone = phone;
         this.email = email;
     }
 
@@ -38,10 +36,6 @@ public class Student implements Serializable {
         this.name = name;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -59,10 +53,6 @@ public class Student implements Serializable {
         return name;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -71,11 +61,5 @@ public class Student implements Serializable {
         this.id = id;
     }
 
-    public void setMobilePhone(String mobilePhone) {
-        this.mobilePhone = mobilePhone;
-    }
 
-    public String getMobilePhone() {
-        return mobilePhone;
-    }
 }

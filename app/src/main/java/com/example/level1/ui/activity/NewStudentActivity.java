@@ -40,8 +40,8 @@ public class NewStudentActivity extends AppCompatActivity {
             studentedit = (Student) data.getSerializableExtra("student");
             nameField.setText(studentedit.getName());
             surnameField.setText(studentedit.getSurname());
-            phoneField.setText(studentedit.getPhone());
-            mobilePhoneField.setText(studentedit.getMobilePhone());
+//            phoneField.setText(studentedit.getPhone());
+//            mobilePhoneField.setText(studentedit.getMobilePhone());
             emailField.setText(studentedit.getEmail());
         }
 
@@ -84,8 +84,8 @@ public class NewStudentActivity extends AppCompatActivity {
         String email = emailField.getText().toString();
         studentedit.setEmail(email);
         studentedit.setSurname(surname);
-        studentedit.setPhone(phone);
-        studentedit.setMobilePhone(mobilePhone);
+//        studentedit.setPhone(phone);
+//        studentedit.setMobilePhone(mobilePhone);
         studentedit.setName(name);
     }
 
