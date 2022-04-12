@@ -69,7 +69,7 @@ public class NewStudentActivity extends AppCompatActivity {
             dao.edit(studentedit);
             finish();
         } else {
-            Student student = new Student(nameField.getText().toString(), phoneField.getText().toString(), emailField.getText().toString());
+            Student student = new Student(nameField.getText().toString(), emailField.getText().toString());
             student.setSurname(surnameField.getText().toString());
             dao.save(student);
             finish();

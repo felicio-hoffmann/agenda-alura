@@ -13,9 +13,9 @@ public class Student implements Serializable {
     private  String name;
     private String surname;
     private  String email;
-    //linha em branco
 
-    public Student(String name, String phone, String email) {
+
+    public Student(String name, String email) {
         this.name = name;
 //        this.phone = phone;
         this.email = email;

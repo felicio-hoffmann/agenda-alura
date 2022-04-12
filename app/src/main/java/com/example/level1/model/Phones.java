@@ -10,6 +10,16 @@ public class Phones {
     private String number;
     private PhoneType type;
 
+    private int studentId;
+
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
+    }
+
     public int getId() {
         return id;
     }

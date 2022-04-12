@@ -1,6 +1,7 @@
 package com.example.level1.ui.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,17 +9,23 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.level1.R;
+import com.example.level1.database.AgendaDatabase;
+import com.example.level1.database.PhoneDAO;
+import com.example.level1.model.Phones;
 import com.example.level1.model.Student;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class StudentAdapter extends BaseAdapter {
     private final List<Student> students = new ArrayList<>();
     private final Context context;
+    private final PhoneDAO phoneDAO;
 
     public StudentAdapter(Context context) {
         this.context = context;
+        phoneDAO = AgendaDatabase.getInstance(context).getPhoneDAO();
     }
 
     @Override
@@ -48,7 +55,9 @@ public class StudentAdapter extends BaseAdapter {
         TextView name = createdView.findViewById(R.id.student_item_name);
         name.setText(selectedStudent.getFullName());
         TextView phone = createdView.findViewById(R.id.student_item_phone);
-        phone.setText(selectedStudent.getPhone());
+        Map<Integer, String> studentPhonesMap = phoneDAO.getFirstPhone(selectedStudent.getId());
+        Log.i("numbertest", "setFields: " + studentPhonesMap.get(selectedStudent.getId()));
+        phone.setText(studentPhonesMap.get(selectedStudent.getId()));
     }
 
     private View createView(ViewGroup viewGroup) {

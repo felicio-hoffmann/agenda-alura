@@ -31,4 +31,6 @@ public abstract class AgendaDatabase extends RoomDatabase {
         }
         return instance;
     }
+
+    public abstract PhoneDAO getPhoneDAO();
 }
